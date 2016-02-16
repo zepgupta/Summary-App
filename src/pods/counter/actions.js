@@ -1,18 +1,16 @@
 import { actionTypes } from './constants';
 
 const {
-  COUNTER_INCREMENT
+  COUNTER_INCREMENT,
 } = actionTypes;
 
 export const increment = (value = 1) => ({
   type: COUNTER_INCREMENT,
-  payload: value
+  payload: value,
 });
 
-export const doubleAsync = () => {
-  return (dispatch, getState) => {
+export const doubleAsync = () =>
+  (dispatch, getState) =>
     setTimeout(() => {
       dispatch(increment(getState().counter));
     }, 200);
-  };
-}
