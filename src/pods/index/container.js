@@ -1,6 +1,3 @@
-'use strict'
-
-import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -9,25 +6,25 @@ import Layout from './layout';
 
 function mapStateToProps(state) {
   return {
-    counter: state.counter
+    counter: state.counter,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     increment,
-    doubleAsync
+    doubleAsync,
   }, dispatch);
 }
 
-function mergeProps(stateProps, dispatchProps, ownProps) {
+function mergeProps(stateProps, dispatchProps) {
   return Object.assign({}, stateProps, {
-    actions: dispatchProps
+    actions: dispatchProps,
   });
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-  mergeProps
+  mergeProps,
 )(Layout);
