@@ -11,6 +11,8 @@ export default class IndexLayout extends React.Component {
     }),
   };
 
+  incrementByOne = () => this.props.actions.increment(1);
+
   render() {
     return (
       <div className="container text-center">
@@ -28,7 +30,7 @@ export default class IndexLayout extends React.Component {
           {' '}
           <span className={classes['counter--green']}>{this.props.counter}</span>
         </h2>
-        <button className="btn btn-default" onClick={this.props.actions.increment}>
+        <button className="btn btn-default" onClick={this.incrementByOne}>
           Increment
         </button>
         {' '}
