@@ -4,7 +4,7 @@ const {
   COUNTER_INCREMENT
 } = actionTypes;
 
-export const increment = (value) => ({
+export const increment = (value = 1) => ({
   type: COUNTER_INCREMENT,
   payload: value
 });
