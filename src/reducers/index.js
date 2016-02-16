@@ -4,5 +4,5 @@ import counter from 'pods/counter/reducers';
 
 export default combineReducers({
   counter,
-  router
+  router,
 });
