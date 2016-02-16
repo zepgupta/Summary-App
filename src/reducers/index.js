@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
-import counter from 'pods/counter/reducers';
+import summaries from 'pods/summaries/reducers';
 
 export default combineReducers({
-  counter,
   router,
+  summaries
 });
