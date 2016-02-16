@@ -107,9 +107,16 @@ config.utils_paths = (() => {
     resolve.apply(resolve, [config.path_base, ...args])
 
   return {
-    base   : base,
-    client : base.bind(null, config.dir_client),
-    dist   : base.bind(null, config.dir_dist)
+    base: base,
+    client: base.bind(null, config.dir_client),
+    dist: base.bind(null, config.dir_dist),
+    assets: base.bind(null, 'src/assets'),
+    pods: base.bind(null, 'src/pods'),
+    routes: base.bind(null, 'src/routes'),
+    containers: base.bind(null, 'src/containers'),
+    layouts: base.bind(null, 'src/layouts'),
+    components: base.bind(null, 'src/components'),
+    reducers: base.bind(null, 'src/reducers'),
   }
 })()
 

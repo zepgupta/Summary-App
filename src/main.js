@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import createBrowserHistory from 'history/lib/createBrowserHistory'
 import { useRouterHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import makeRoutes from './routes'
-import Root from './containers/Root'
-import configureStore from './redux/configureStore'
+import makeRoutes from 'routes'
+import Root from 'containers/Root'
+import configureStore from 'store'
 
 // Create redux store and sync with react-router-redux. We have installed the
 // react-router-redux reducer under the key "router" in src/routes/index.js,
