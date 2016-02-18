@@ -5,6 +5,7 @@ import Layout from './layout';
 
 function mapStateToProps(state) {
   return {
+    summaries: state.summaries
   };
 }
 
@@ -13,8 +14,12 @@ function mapDispatchToProps(dispatch) {
   }, dispatch);
 }
 
-function mergeProps(stateProps, dispatchProps) {
-  return Object.assign({}, stateProps, dispatchProps);
+function mergeProps(stateProps, dispatchProps, ownProps) {
+  return Object.assign({}, dispatchProps, {
+    summary: stateProps.summaries.find(summary =>
+      summary.id === ownProps.routeParams.summaryId
+    )
+  });
 }
 
 export default connect(

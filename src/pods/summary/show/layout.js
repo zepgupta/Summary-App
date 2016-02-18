@@ -8,7 +8,7 @@ export default class SummaryShowLayout extends React.Component {
   render() {
     return (
       <div>
-        Show that summary!
+        {this.props.summary.summarization}
       </div>
     );
   }
