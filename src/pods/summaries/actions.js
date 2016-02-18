@@ -9,21 +9,23 @@ const {
 
 export function createSummary(article) {
   return (dispatch) => {
-  	dispatch({
+    const id = shortid.generate();
+
+    dispatch({
       type: CREATE_SUMMARY,
       id,
       article,
      });
-    const id = shortid.generate();
+
     const url = 'http://localhost:8080/summarizeURL/' + urlencode(article);
     request
       .get(url)
       .end((err, response) => {
       	if (err) {
           dispatch({
-            type: CREATE_SUMMARY,
+            type: UPDATE_SUMMARY,
             id,
-            summary: 'Error in API request',
+            summarization: 'Error in API request',
           });
       	}
         else {
@@ -31,7 +33,7 @@ export function createSummary(article) {
           dispatch({
             type: UPDATE_SUMMARY,
             id,
-            summary: response.text,
+            summarization: response.text,
           });
         }
       });

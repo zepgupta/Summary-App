@@ -6,6 +6,7 @@ import Layout from './layout';
 
 function mapStateToProps(state) {
   return {
+    currentSummary: state.summaries[0]
   };
 }
 

@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 export default class SummariesNewLayout extends React.Component {
   static propTypes = {
     createSummary: PropTypes.func.isRequired,
+    currentSummary: PropTypes.object,
   };
 
   state = {
@@ -19,7 +20,13 @@ export default class SummariesNewLayout extends React.Component {
           })}
         />
         <button onClick={() => this.props.createSummary(this.state.article)}>Submit</button>
-        <div>{this.state.summary}</div>
+        <div>
+          {
+            this.props.currentSummary
+            ? this.props.currentSummary.summarization
+            : 'Placeholder'
+          }
+        </div>
       </div>
     );
   }

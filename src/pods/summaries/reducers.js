@@ -12,11 +12,18 @@ export default function summariesReducer(state = [], action) {
         article: action.article,
       }];
     case UPDATE_SUMMARY:
-      return [...state, {
-        id: action.id,
-        summary: action.summary,
-      }];
+      return updateSummary(state, action.id, action.summarization)
     default:
       return state;
   }
+}
+
+function updateSummary(summariesState, id, summarization) {
+  return summariesState.map(summary =>
+    summary.id === id
+    ? Object.assign({}, summary, {
+      summarization
+    })
+    : summary
+  );
 }
