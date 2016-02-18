@@ -1,7 +1,9 @@
+import { push } from 'react-router-redux';
 import shortid from 'shortid';
+import urlencode from 'urlencode';
+import request from 'superagent';
+
 import { actionTypes } from './constants';
-const urlencode = require('urlencode');
-const request = require('superagent');
 
 const {
   CREATE_SUMMARY, UPDATE_SUMMARY
@@ -11,16 +13,19 @@ export function createSummary(article) {
   return (dispatch) => {
     const id = shortid.generate();
 
+    // Create record for summary using article
     dispatch({
       type: CREATE_SUMMARY,
       id,
       article,
      });
 
+    // Fetch summary from api
     const url = 'http://localhost:8080/summarizeURL/' + urlencode(article);
     request
       .get(url)
       .end((err, response) => {
+        // If error alert user
       	if (err) {
           dispatch({
             type: UPDATE_SUMMARY,
@@ -29,32 +34,18 @@ export function createSummary(article) {
           });
       	}
         else {
+          // If successfull proceeed
           console.log(response.text);
+
           dispatch({
             type: UPDATE_SUMMARY,
             id,
             summarization: response.text,
           });
+
+          // Transition to summary show screen
+          dispatch(push(`summaries/${id}`))
         }
       });
-    // Create record for summary using article
-    // dispatch({
-    //  type: CREATE_SUMMARY,
-    //  id,
-    //  article,
-    // });
-    // Fetch summary from api
-    //
-    // If error alert user
-    //
-    // If successfull proceeed
-    //
-    // Update record with summary (delete article text?)
-    // dispatch({
-    //   type: UPDATE_SUMMARY,
-    //   id,
-    //   summary,
-    // });
-    // Transition to summary show screen
   };
 }
