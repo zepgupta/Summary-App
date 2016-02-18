@@ -4,5 +4,5 @@ import summaries from 'pods/summaries/reducers';
 
 export default combineReducers({
   router,
-  summaries
+  summaries,
 });

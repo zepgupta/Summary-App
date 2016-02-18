@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { createSummary } from 'pods/summaries/actions';
 import Layout from './layout';
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
   };
 }

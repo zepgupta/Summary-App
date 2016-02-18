@@ -5,7 +5,7 @@ import Layout from './layout';
 
 function mapStateToProps(state) {
   return {
-    summaries: state.summaries
+    summaries: state.summaries,
   };
 }
 
@@ -18,7 +18,7 @@ function mergeProps(stateProps, dispatchProps, ownProps) {
   return Object.assign({}, dispatchProps, {
     summary: stateProps.summaries.find(summary =>
       summary.id === ownProps.routeParams.summaryId
-    )
+    ),
   });
 }
 

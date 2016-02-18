@@ -6,19 +6,25 @@ export default class SummariesNewLayout extends React.Component {
   };
 
   state = {
-    article: ''
+    article: '',
   };
+
+  handleChange = e => {
+    this.setState({
+      article: e.target.valuem,
+    });
+  }
+
+  handleSubmit = () => this.props.createSummary(this.state.article);
 
   render() {
     return (
       <div>
         <textarea
           value={this.state.article}
-          onChange={(e) => this.setState({
-            article: e.target.value
-          })}
+          onChange={this.handleChange}
         />
-        <button onClick={() => this.props.createSummary(this.state.article)}>Submit</button>
+        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     );
   }

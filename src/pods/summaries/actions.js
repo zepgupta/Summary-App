@@ -6,7 +6,8 @@ import request from 'superagent';
 import { actionTypes } from './constants';
 
 const {
-  CREATE_SUMMARY, UPDATE_SUMMARY
+  CREATE_SUMMARY,
+  UPDATE_SUMMARY,
 } = actionTypes;
 
 export function createSummary(article) {
@@ -18,25 +19,21 @@ export function createSummary(article) {
       type: CREATE_SUMMARY,
       id,
       article,
-     });
+    });
 
     // Fetch summary from api
-    const url = 'http://localhost:8080/summarizeURL/' + urlencode(article);
+    const url = `http://localhost:8080/summarizeURL/${urlencode(article)}`;
     request
       .get(url)
       .end((err, response) => {
         // If error alert user
-      	if (err) {
+        if (err) {
           dispatch({
             type: UPDATE_SUMMARY,
             id,
             summarization: 'Error in API request',
           });
-      	}
-        else {
-          // If successfull proceeed
-          console.log(response.text);
-
+        } else {
           dispatch({
             type: UPDATE_SUMMARY,
             id,
@@ -44,8 +41,9 @@ export function createSummary(article) {
           });
 
           // Transition to summary show screen
-          dispatch(push(`summaries/${id}`))
+          dispatch(push(`summaries/${id}`));
         }
-      });
+      })
+    ;
   };
 }
