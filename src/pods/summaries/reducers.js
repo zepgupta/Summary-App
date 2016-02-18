@@ -1,7 +1,7 @@
 import { actionTypes } from './constants';
 
 const {
-  CREATE_SUMMARY
+  CREATE_SUMMARY, UPDATE_SUMMARY
 } = actionTypes;
 
 export default function summariesReducer(state = [], action) {
@@ -11,7 +11,11 @@ export default function summariesReducer(state = [], action) {
         id: action.id,
         article: action.article,
       }];
-
+    case UPDATE_SUMMARY:
+      return [...state, {
+        id: action.id,
+        summary: action.summary,
+      }];
     default:
       return state;
   }

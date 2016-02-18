@@ -19,6 +19,7 @@ export default class SummariesNewLayout extends React.Component {
           })}
         />
         <button onClick={() => this.props.createSummary(this.state.article)}>Submit</button>
+        <div>{this.state.summary}</div>
       </div>
     );
   }
