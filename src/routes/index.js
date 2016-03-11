@@ -3,10 +3,10 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import SummariesNewContainer from 'pods/summarizer/container';
+import SummaryMainContainer from 'pods/summaryMain/container';
 
 export default (store) => (
   <Route path="/">
-    <IndexRoute component={SummariesNewContainer} />
+    <IndexRoute component={SummaryMainContainer} />
   </Route>
 );
