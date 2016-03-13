@@ -1,27 +1,32 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { summarizeUrl } from 'pods/actions';
+import { summarizeUrl, summarizeText, displayError } from 'pods/actions';
 import Layout from './layout';
 
-
-function mapStateToProps() {
-  return {
-  };
+function mapStateToProps(state) {
+  if(state.error.length > 0){
+  	return {
+  		error: state.error[state.error.length-1].error,
+  	};
+  }
+  else{
+	return {
+	  error: '',
+	};
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    summarizeText,
     summarizeUrl,
+    displayError,
   }, dispatch);
-}
-
-function mergeProps(stateProps, dispatchProps) {
-  return Object.assign({}, stateProps, dispatchProps);
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-  mergeProps,
+  undefined,
 )(Layout);

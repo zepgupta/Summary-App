@@ -6,10 +6,17 @@ export default class SummariesLayout extends React.Component {
   };
 
   render() {
+
     let sums = [];
     for(var i=0; i<this.props.summaries.length; i++){
       sums.push(
-        <Summary className='summary' summary={this.props.summaries[i].summarization} id={this.props.summaries[i].id} /> 
+        <Summary 
+          key={'summary'+i} 
+          className='summary' 
+          summary={this.props.summaries[i].summary}
+          title={this.props.summaries[i].title} 
+          id={this.props.summaries[i].id} 
+        /> 
       );
     }    
     return (

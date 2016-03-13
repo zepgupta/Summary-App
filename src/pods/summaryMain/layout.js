@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Summarizer from 'pods/summarizer/container'
+import InputSelector from 'pods/summarization/inputSelector/container'
 import Summaries from 'pods/summaries/container'
 
 export default class SummariesMainLayout extends React.Component {
@@ -10,7 +10,7 @@ export default class SummariesMainLayout extends React.Component {
   render() {
     return (
       <div>
-        <Summarizer />
+        <InputSelector />
         <Summaries />
       </div>
     );
