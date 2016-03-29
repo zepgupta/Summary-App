@@ -6,7 +6,7 @@ import Layout from './layout';
 // question: when should i map state to props and when should i use data straight out of state
 function mapStateToProps(state) {
   return {
-  	summaries: state.summaries
+    summaries: state.summaries,
   };
 }
 

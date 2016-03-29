@@ -1,7 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { summarizeUrl } from 'pods/actions';
 import Layout from './layout';
 
 

@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { logout } from 'pods/actions';
+import { login } from 'pods/actions';
 import Layout from './layout';
 
 // question: when should i map state to props and when should i use data straight out of state
@@ -12,7 +12,7 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    logout,
+    login,
   }, dispatch);
 }
 

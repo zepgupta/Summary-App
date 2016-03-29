@@ -4,7 +4,11 @@ const {
   SUMMARIZE,
   UPDATE_SUMMARIES,
   DISPLAY_ERROR,
-  HIDE_ERROR
+  HIDE_ERROR,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
 } = actionTypes;
 
 function updateSummaries(summariesState, id, title, summary) {
@@ -18,7 +22,7 @@ function updateSummaries(summariesState, id, title, summary) {
   );
 }
 
-//reducer
+// summary reducer
 export function summaries(state = [], action) {
   switch (action.type) {
     
@@ -36,8 +40,8 @@ export function summaries(state = [], action) {
   }
 }
 
-//reducer
-export function error(state = [], action){
+// error reducer
+export function error(state = [], action) {
   switch (action.type) {
     
     case DISPLAY_ERROR:
@@ -49,6 +53,44 @@ export function error(state = [], action){
       return [...state, {
         error: '',
       }];
+
+    default:
+      return state;
+  }
+}
+
+// login reducer
+export function login(state = {
+    isFetching: false,
+    isAuthenticated: localStorage.getItem('id_token') ? true : false,
+  }, action) {
+  switch (action.type) {
+
+    case LOGIN_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
+      });
+
+    case LOGIN_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        isAuthenticated: action.isFetching,
+        message: action.message,
+      });
+
+    case LOGIN_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
+        message: action.message,
+      });
+
+    case LOGOUT:
+      return Object.assign({}, state, {
+        isFetching: action.isFetching,
+        isAuthenticated: action.isAuthenticated,
+      });
 
     default:
       return state;

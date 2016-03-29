@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { routerReducer as router } from 'react-router-redux';
-import {summaries, error} from 'pods/reducers';
+import { routerReducer as routing } from 'react-router-redux';
+import { summaries, error, login } from 'pods/reducers';
 
 export default combineReducers({
-  router,
+  routing,
   summaries,
-  error
+  error,
+  login,
 });

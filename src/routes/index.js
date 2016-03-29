@@ -4,9 +4,11 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import SummaryMainContainer from 'pods/summaryMain/container';
+import LoginContainer from 'pods/login/container';
 
 export default (store) => (
   <Route path="/">
-    <IndexRoute component={SummaryMainContainer} />
+    <IndexRoute component={LoginContainer} />
+    <Route path="home" component={SummaryMainContainer}/>
   </Route>
 );
