@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import Summary from 'pods/summaries/summary/container';
 
 export default class SummariesLayout extends React.Component {

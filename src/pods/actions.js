@@ -3,11 +3,15 @@ import shortid from 'shortid';
 import urlencode from 'urlencode';
 import request from 'superagent';
 import async from 'async';
+const jwtDecode = require('jwt-decode');
 
 import { actionTypes } from './constants';
 import authReq from 'lib/authReq';
 
 const {
+  GETTING_SUMMARIES,
+  SUMMARIES_RECEIVED,
+
   SUMMARIZE,
   UPDATE_SUMMARIES,
 
@@ -18,10 +22,14 @@ const {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
 } = actionTypes;
 
 // *** login actions
-export function login(creds) {
+export function login(creds, dispE) {
   return (dispatch) => {
     dispatch({
       type: LOGIN_REQUEST,
@@ -40,6 +48,7 @@ export function login(creds) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          dispE(response.body.message);
         }
         else if (!response.body.success) {
           dispatch({
@@ -48,6 +57,7 @@ export function login(creds) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          dispE(response.body.message);
         }
         else {
           localStorage.setItem('token', response.body.token);
@@ -76,7 +86,80 @@ export function logout() {
   };
 }
 
+// *** register actions
+export function registerUser(creds,dispE) {
+  return (dispatch) => {
+    dispatch({
+      type: REGISTER_REQUEST,
+      isFetching: true,
+      isAuthenticated: false,
+    });
+
+    request.post('http://localhost:8080/api/register')
+      .type('form')
+      .send({ username: creds.username, email:creds.email, password: creds.password })
+      .end(function (err, response) {
+        if (err) {
+          dispatch({
+            type: REGISTER_FAILURE,
+            isFetching: false,
+            isAuthenticated: false,
+            message: response.body.message,
+          });
+          dispE(response.body.message);
+        }
+        else if (!response.body.success) {
+          dispatch({
+            type: REGISTER_FAILURE,
+            isFetching: false,
+            isAuthenticated: false,
+            message: response.body.message,
+          });
+          dispE(response.body.message);
+        }
+        else {
+          localStorage.setItem('token', response.body.token);
+          dispatch({
+            type: REGISTER_SUCCESS,
+            isFetching: false,
+            isAuthenticated: true,
+            message: 'Login successful',
+            token: response.body.token,
+          });
+          dispatch(push('/home'));
+        }
+      });
+  }
+}
+
+
 // *** summary actions
+export function getSummaries(){
+  return (dispatch) => {
+    dispatch({
+      type: GETTING_SUMMARIES,
+    });
+    let url = 'http://localhost:8080/api/summaries'
+    request
+      .get(url)
+      .set({ 'x-access-token': localStorage.getItem('token') })
+      .end((err, response) => {
+        // If error alert user
+        if (err) {
+          dispatch({
+            type: SUMMARIES_RECEIVED,
+            summaries: ['Error in API request'],
+          });
+        } else {
+          dispatch({
+            type: SUMMARIES_RECEIVED,
+            summaries: response.body.summaries,
+          });
+        }
+      });
+  }
+}
+
 export function summarizeUrl(article) {
   return (dispatch) => {
     // MOVING ID GENERATION TO SERVER
@@ -91,7 +174,7 @@ export function summarizeUrl(article) {
 
     async.waterfall([
       // make sure authentication is valid.
-      // if not, authReq qill redirect the user to the login page.
+      // if not, authReq will redirect the user to the login page.
       function (callback) {
         authReq(dispatch, function (token) {
           callback(null, token);
@@ -171,7 +254,7 @@ export function summarizeText(article, title) {
   };
 }
 
-// *** summary error actions
+// *** display error actions
 export function displayError(error) {
   return (dispatch) => {
     dispatch({
@@ -186,3 +269,27 @@ export function displayError(error) {
     }, 3000);
   };
 }
+
+// *auth checks (no actions actually dispatched since the actions are url changes)
+export function authUrl(){
+  return (dispatch) => {
+    let token = localStorage.getItem('token') || null;
+    let decoded = token ? jwtDecode(token) : null;
+    // if no token, or it is expired...
+    if ( !token || decoded.exp < (Date.now()/1000) ) {
+      localStorage.removeItem('token');
+      dispatch(push('/'));
+    }
+  }
+};
+
+export function authed(){
+  return (dispatch) => {
+    let token = localStorage.getItem('token') || null;
+    let decoded = token ? jwtDecode(token) : null;
+    // if no token, or it is expired...
+    if ( token && decoded.exp > (Date.now()/1000) ) {
+      dispatch(push('/home'));
+    }
+  }
+};
