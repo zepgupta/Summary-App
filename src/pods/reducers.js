@@ -5,6 +5,9 @@ const {
   SUMMARIES_RECEIVED,
   SUMMARIZE,
   UPDATE_SUMMARIES,
+  UPDATE_SUMMARIES_FAIL,
+  DELETE_SUMMARY,
+  SHOW_FULL_TEXT,
   DISPLAY_ERROR,
   HIDE_ERROR,
   LOGIN_REQUEST,
@@ -18,9 +21,10 @@ const {
 
 function updateSummaries(summariesState, id, title, summary) {
   return summariesState.map(obj =>
-    obj.id === id
+    obj.id === 'new'
     ? Object.assign({}, obj, {
       title,
+      id,
       summary,
     })
     : obj
@@ -29,6 +33,7 @@ function updateSummaries(summariesState, id, title, summary) {
 
 // summary reducer
 export function summaries(state = [], action) {
+  let nState;
   switch (action.type) {
     
     case GETTING_SUMMARIES:
@@ -38,13 +43,45 @@ export function summaries(state = [], action) {
       return action.summaries;
 
     case SUMMARIZE:
-      return [...state, {
+      return [{
         id: action.id,
         article: action.article,
-      }];
+      }, ...state];
 
     case UPDATE_SUMMARIES:
       return updateSummaries(state, action.id, action.title, action.summary);
+
+    case UPDATE_SUMMARIES_FAIL:
+      nState = state.slice();
+      for (let i = 0; i < nState.length; i++) {
+        if (nState[i].id === 'new') {
+          nState.splice(i, 1);
+        }
+      }
+      return nState;
+
+    case DELETE_SUMMARY:
+      nState = state.slice();
+      for (let i = 0; i < nState.length; i++) {
+        if (nState[i].id === action.id) {
+          nState.splice(i, 1);
+        }
+      }
+      return nState;
+
+    default:
+      return state;
+  }
+}
+
+export function fullText(state=[], action) {
+  switch(action.type) {
+    case SHOW_FULL_TEXT:
+      return [{
+        id: action.id,
+        title: action.title,
+        article: action.article,
+      }, ...state];
 
     default:
       return state;

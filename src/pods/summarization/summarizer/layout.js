@@ -37,6 +37,8 @@ export default class SummarizerLayout extends React.Component {
         this.props.displayError('Enter a title and text to be summarized');
       }
       else {
+        this.props.article = '';
+        this.props.title = '';
         this.props.summarizeText(this.state.article, this.state.title);
       }
     }

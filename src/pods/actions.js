@@ -14,6 +14,9 @@ const {
 
   SUMMARIZE,
   UPDATE_SUMMARIES,
+  UPDATE_SUMMARIES_FAIL,
+  DELETE_SUMMARY,
+  SHOW_FULL_TEXT,
 
   DISPLAY_ERROR,
   HIDE_ERROR,
@@ -27,6 +30,7 @@ const {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
 } = actionTypes;
+
 
 // *** login actions
 export function login(creds, dispE) {
@@ -85,6 +89,7 @@ export function logout() {
     dispatch(push('/'));
   };
 }
+
 
 // *** register actions
 export function registerUser(creds,dispE) {
@@ -162,8 +167,8 @@ export function getSummaries(){
 
 export function summarizeUrl(article) {
   return (dispatch) => {
-    // MOVING ID GENERATION TO SERVER
-    const id = shortid.generate();
+    // temp id
+    const id = 'new';
 
     // Create record for summary using article
     dispatch({
@@ -190,14 +195,13 @@ export function summarizeUrl(article) {
             // If error alert user
             if (err) {
               dispatch({
-                type: UPDATE_SUMMARIES,
-                id,
-                summarization: 'Error in API request',
+                type: UPDATE_SUMMARIES_FAIL,
+                message: 'Error in API request',
               });
             } else {
               dispatch({
                 type: UPDATE_SUMMARIES,
-                id,
+                id: response.body.id,
                 summary: response.body.summary,
                 title: response.body.title,
               });
@@ -211,7 +215,8 @@ export function summarizeUrl(article) {
 
 export function summarizeText(article, title) {
   return (dispatch) => {
-    const id = shortid.generate();
+    // temp id
+    const id = 'new';
     // Create record for summary using article
     dispatch({
       type: SUMMARIZE,
@@ -235,14 +240,13 @@ export function summarizeText(article, title) {
             // If error alert user
             if (err) {
               dispatch({
-                type: UPDATE_SUMMARIES,
-                id,
-                summarization: 'Error in API request',
+                type: UPDATE_SUMMARIES_FAIL,
+                message: 'Error in API request',
               });
             } else {
               dispatch({
                 type: UPDATE_SUMMARIES,
-                id,
+                id: response.body.id,
                 summary: response.body.summary,
                 title: response.body.title,
               });
@@ -252,6 +256,52 @@ export function summarizeText(article, title) {
       },
     ]);
   };
+}
+
+export function deleteSummary(id) {
+  return (dispatch) => {
+    const url = 'http://localhost:8080/api/'+id;
+    request
+      .delete(url)
+      .set({ 'x-access-token': localStorage.getItem('token') })
+      .end((err, response) => {
+        if (err) {
+          // a spot for future error display if desired
+        }
+        else if (response.success === false) {
+          // a spot for future error display if desired
+        }
+        else{
+          dispatch({
+            type: DELETE_SUMMARY,
+            id,
+          });
+        }
+      });
+  }
+}
+
+export function showFullText(id) {
+  return (dispatch) => {
+    var url = 'http://localhost:8080/api/fullText/'+id;
+    request
+      .get(url)
+      .set({ 'x-access-token': localStorage.getItem('token') })
+      .end((err, response) => {
+        if(err){
+          console.error('API error');
+        }
+        else{
+          dispatch({
+            type: SHOW_FULL_TEXT,
+            id,
+            title: response.body.title,
+            article: response.body.article,
+          });
+          dispatch(push('/fullText'));
+        }
+      });
+  }
 }
 
 // *** display error actions
@@ -269,6 +319,7 @@ export function displayError(error) {
     }, 3000);
   };
 }
+
 
 // *auth checks (no actions actually dispatched since the actions are url changes)
 export function authUrl(){
@@ -293,3 +344,11 @@ export function authed(){
     }
   }
 };
+
+
+// *utility
+export function goTo(path) {
+  return (dispatch) => {
+    dispatch(push(path));
+  }
+}
