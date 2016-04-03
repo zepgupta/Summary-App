@@ -1,6 +1,8 @@
 import React from 'react';
 import Summary from 'pods/summaries/summary/container';
 
+import styles from './style.css';
+
 export default class SummariesLayout extends React.Component {
 
   render() {
@@ -18,8 +20,8 @@ export default class SummariesLayout extends React.Component {
       );
     }
     return (
-      <div>
-        <h1>My Summaries</h1>
+      <div className={styles.summaryPanel}>
+        <h1 className={styles.title}>My Summaries</h1>
         <div>
           {sums}
         </div>

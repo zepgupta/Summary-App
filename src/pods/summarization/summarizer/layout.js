@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import styles from './style.css';
+
 export default class SummarizerLayout extends React.Component {
   static propTypes = {
     summarizeUrl: PropTypes.func.isRequired,
@@ -50,8 +52,9 @@ export default class SummarizerLayout extends React.Component {
     if (this.props.inputType === 'text') {
       html.push(
         <div>
-          <p>Title</p>
+          <p className={styles.inputLabel}>Title</p>
           <input
+            className={styles.textInput}
             type="text"
             onChange= {e => this.setState({ title: e.target.value })}
             value={this.state.title}
@@ -65,7 +68,7 @@ export default class SummarizerLayout extends React.Component {
     if (this.props.error !== '') {
       error.push(
         <div>
-          <p className="error"> {this.props.error} </p>
+          <p className={styles.error}> {this.props.error} </p>
         </div>
       );
     }
@@ -73,12 +76,13 @@ export default class SummarizerLayout extends React.Component {
     return (
       <div>
         {html}
-        <p>Article</p>
+        <p className={styles.inputLabel}>Article</p>
         <textarea
+          className={styles.textArea}
           value={this.state.article}
           onChange={this.handleChange}
         />
-        <button onClick= {this.handleSubmit} >Submit</button>
+        <button className={styles.button} onClick={this.handleSubmit} >Submit</button>
       {error}
       </div>
     );

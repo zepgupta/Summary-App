@@ -1,16 +1,14 @@
 import React, { PropTypes } from 'react';
 import InputSelector from 'pods/summarization/inputSelector/container';
 import Summaries from 'pods/summaries/container';
+import Header from 'pods/header/container';
+
+import styles from './style.css';
 
 export default class SummariesMainLayout extends React.Component {
   static propTypes = {
-    logout: PropTypes.func.isRequired,
     getSummaries: PropTypes.func.isRequired,
   };
-
-  handleLogout = () => {
-    this.props.logout();
-  }
 
   render() {
     this.props.authUrl();
@@ -18,11 +16,11 @@ export default class SummariesMainLayout extends React.Component {
 
     return (
       <div>
-        <div>
+        <Header />
+        <div className={styles.mainPanel}>
           <InputSelector />
           <Summaries />
         </div>
-        <button type="button" onClick={this.handleLogout}>Logout</button>
       </div>
     );
   }

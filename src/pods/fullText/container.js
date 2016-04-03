@@ -5,7 +5,6 @@ import { goTo } from 'pods/actions';
 import Layout from './layout';
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     title: state.fullText[0].title,
     article: state.fullText[0].article,

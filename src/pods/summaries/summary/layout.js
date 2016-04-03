@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import styles from './style.css';
+
 export default class SummaryLayout extends React.Component {
   static propTypes = {
     id: React.PropTypes.string,
@@ -19,11 +21,15 @@ export default class SummaryLayout extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>{this.props.title}</h3>
-        <p>{this.props.summary}</p>
-        <button onClick={this.handleDelete}>Delete</button>
-        <button onClick={this.handleView}>Full Text</button>
+      <div className={styles.summary}>
+        <div className={styles.main}>
+          <h3 className={styles.title}>{this.props.title}</h3>
+          <p className={styles.text}>{this.props.summary}</p>
+        </div>
+        <div className={styles.buttons}>  
+          <button className={styles.button} onClick={this.handleDelete}>Delete</button>
+          <button className={styles.button} onClick={this.handleView}>Full Text</button>
+        </div>
       </div>
     );
   }

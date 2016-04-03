@@ -1,4 +1,7 @@
 import React, { PropTypes } from 'react';
+import Header from 'pods/header/container';
+
+import styles from './style.css';
 
 export default class FullTextLayout extends React.Component {
   static propTypes = {
@@ -14,9 +17,14 @@ export default class FullTextLayout extends React.Component {
   render() {
     return (
       <div>
-        <h3>{this.props.title}</h3>
-        <p>{this.props.article}</p>
-        <button onClick={this.handleBack}>Back</button>
+        <Header />
+        <div className={styles.background}>
+          <div className={styles.fullText}>
+            <h3 className={styles.title}>{this.props.title}</h3>
+            <p className={styles.article}>{this.props.article}</p>
+            <button className={styles.back} onClick={this.handleBack}>Back</button>
+          </div>
+        </div>
       </div>
     );
   }
