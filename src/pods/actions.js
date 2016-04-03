@@ -31,6 +31,7 @@ const {
   REGISTER_FAILURE,
 } = actionTypes;
 
+const server = 'https://aqueous-ravine-72933.herokuapp.com/';
 
 // *** login actions
 export function login(creds, dispE) {
@@ -41,7 +42,7 @@ export function login(creds, dispE) {
       isAuthenticated: false,
     });
 
-    request.post('http://localhost:8080/api/authenticate')
+    request.post(server+'api/authenticate')
       .type('form')
       .send({ username: creds.username, password: creds.password })
       .end(function (err, response) {
@@ -100,7 +101,7 @@ export function registerUser(creds,dispE) {
       isAuthenticated: false,
     });
 
-    request.post('http://localhost:8080/api/register')
+    request.post(server+'api/register')
       .type('form')
       .send({ username: creds.username, email:creds.email, password: creds.password })
       .end(function (err, response) {
@@ -144,7 +145,7 @@ export function getSummaries(){
     dispatch({
       type: GETTING_SUMMARIES,
     });
-    let url = 'http://localhost:8080/api/summaries'
+    let url = server+'api/summaries'
     request
       .get(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
@@ -260,7 +261,7 @@ export function summarizeText(article, title) {
 
 export function deleteSummary(id) {
   return (dispatch) => {
-    const url = 'http://localhost:8080/api/'+id;
+    const url = server+'api/'+id;
     request
       .delete(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
@@ -283,7 +284,7 @@ export function deleteSummary(id) {
 
 export function showFullText(id) {
   return (dispatch) => {
-    var url = 'http://localhost:8080/api/fullText/'+id;
+    var url = server+'api/fullText/'+id;
     request
       .get(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
