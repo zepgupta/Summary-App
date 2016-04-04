@@ -31,6 +31,7 @@ const {
   REGISTER_FAILURE,
 } = actionTypes;
 
+//const server = 'http://localhost:8080/'
 const server = 'https://aqueous-ravine-72933.herokuapp.com/';
 
 // *** login actions
@@ -205,6 +206,7 @@ export function summarizeUrl(article) {
                 id: response.body.id,
                 summary: response.body.summary,
                 title: response.body.title,
+                summaryDate: response.body.summaryDate,
               });
             }
           });

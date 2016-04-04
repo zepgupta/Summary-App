@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import InputSelector from 'pods/summarization/inputSelector/container';
 import Summaries from 'pods/summaries/container';
 import Header from 'pods/header/container';
+import Footer from 'pods/footer/container';
 
 import styles from './style.css';
 
@@ -21,6 +22,7 @@ export default class SummariesMainLayout extends React.Component {
           <InputSelector />
           <Summaries />
         </div>
+        <Footer />
       </div>
     );
   }

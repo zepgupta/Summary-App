@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Footer from 'pods/footer/container'
 
 import styles from './style.css';
 import logo from 'static/Drawing.png';
@@ -56,6 +57,7 @@ export default class LoginLayout extends React.Component {
 
     return (
       <div>
+        {error}
         <div className={styles.introPanel}>
           <div className={styles.logoPanel}>
             <img src={logo} className={styles.logo} />
@@ -63,10 +65,9 @@ export default class LoginLayout extends React.Component {
           <div className={styles.explanation}>
             <div className={styles.intro}>
               <p>"I like to read articles, but there are too many out there of interest and not enough time."</p>
-              <p className={styles.text}>This is a utility app that will allow you to provide a url to an article or paste in text and receive a summary.</p>
+              <p className={styles.text}>This is a utility app that will allow you to provide a url to an article or some text, and will maintain a list of summaries for you to review when you have time.</p>
             </div>
           </div>
-          {error}
         </div>
           <div className={styles.bottomPanel}>
             <div className={styles.loginPanel}>
@@ -98,6 +99,7 @@ export default class LoginLayout extends React.Component {
               </div>
             </div>    
           </div>
+          <Footer />
         </div>
     );
   }

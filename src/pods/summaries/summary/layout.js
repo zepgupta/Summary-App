@@ -7,6 +7,7 @@ export default class SummaryLayout extends React.Component {
     id: React.PropTypes.string,
     summary: React.PropTypes.string,
     title: React.PropTypes.string,
+    summaryDate: React.PropTypes.string,
     deleteSummary: PropTypes.func.isRequired,
     showFullText: PropTypes.func.isRequired,
   };
@@ -23,7 +24,10 @@ export default class SummaryLayout extends React.Component {
     return (
       <div className={styles.summary}>
         <div className={styles.main}>
-          <h3 className={styles.title}>{this.props.title}</h3>
+          <div className={styles.titleLine}>
+            <h3 className={styles.title}>{this.props.title}</h3>
+            <h3 className={styles.date}>Summarized on:   {this.props.summaryDate}</h3>
+          </div>
           <p className={styles.text}>{this.props.summary}</p>
         </div>
         <div className={styles.buttons}>  

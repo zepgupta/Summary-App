@@ -1,0 +1,47 @@
+.background {
+	background-color: #1F2421;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+.fullText {
+	background-color: #DCE1DE;
+	position: fixed;
+	left: 12%;
+	right: 12%;
+	top: 5%;
+	bottom: 0;
+	font-family: arial;
+	overflow: auto;
+}
+
+.title {
+	text-align: center;
+	background-color: #216869;
+	color: #DCE1DE;
+	padding-top: 2%;
+	padding-bottom: 2%;
+}
+
+.article {
+	font-size: 1.2em;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 2%;
+}
+
+.back {
+    margin: -20px -50px; 
+    margin-top: 20px;
+    position: relative;
+    top:50%; 
+    left:50%;
+    background-color: #1F2421;
+    color: #9CC5A1;
+    border: none;
+    font-size: 1.5em;
+}
+

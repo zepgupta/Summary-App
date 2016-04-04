@@ -19,13 +19,14 @@ const {
   REGISTER_FAILURE,
 } = actionTypes;
 
-function updateSummaries(summariesState, id, title, summary) {
+function updateSummaries(summariesState, id, title, summary, summaryDate) {
   return summariesState.map(obj =>
     obj.id === 'new'
     ? Object.assign({}, obj, {
       title,
       id,
       summary,
+      summaryDate,
     })
     : obj
   );
@@ -49,7 +50,7 @@ export function summaries(state = [], action) {
       }, ...state];
 
     case UPDATE_SUMMARIES:
-      return updateSummaries(state, action.id, action.title, action.summary);
+      return updateSummaries(state, action.id, action.title, action.summary, action.summaryDate);
 
     case UPDATE_SUMMARIES_FAIL:
       nState = state.slice();

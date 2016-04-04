@@ -1,0 +1,39 @@
+.summary {
+	margin: 1%;
+	border-radius: 10px 10px 10px 10px;
+	border: 5px solid #216869;
+	background-color: #DCE1DE;
+}
+
+	.main {
+		margin: 1%;
+	}
+		.titleLine{
+			display: flex;
+		}
+
+			.title {
+				width: 80%;
+				color: #1F2421;
+				font-weight: bold;
+			}
+
+			.date {
+				color: #1F2421;
+			}
+
+		.text {
+			color: #1F2421;
+			font-size: 1.3em;
+		}
+
+	.buttons {
+	
+	}
+
+	.button {
+		background-color: #1F2421;
+		color: #9CC5A1;
+		font-weight: bold;
+		margin-right: 5px;
+	}

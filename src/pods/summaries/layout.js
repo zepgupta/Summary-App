@@ -16,6 +16,7 @@ export default class SummariesLayout extends React.Component {
           summary={this.props.summaries[i].summary}
           title={this.props.summaries[i].title}
           id={this.props.summaries[i].id}
+          summaryDate={this.props.summaries[i].summaryDate}
         />
       );
     }

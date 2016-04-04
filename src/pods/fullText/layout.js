@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import Header from 'pods/header/container';
+import Footer from 'pods/footer/container';
 
 import styles from './style.css';
 
@@ -25,6 +26,7 @@ export default class FullTextLayout extends React.Component {
             <button className={styles.back} onClick={this.handleBack}>Back</button>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
