@@ -1,5 +1,4 @@
 import { push } from 'react-router-redux';
-import shortid from 'shortid';
 import urlencode from 'urlencode';
 import request from 'superagent';
 import async from 'async';
@@ -31,8 +30,8 @@ const {
   REGISTER_FAILURE,
 } = actionTypes;
 
-//const server = 'http://localhost:8080/'
-const server = 'https://aqueous-ravine-72933.herokuapp.com/';
+const server = 'http://localhost:8080/';
+// const server = 'https://aqueous-ravine-72933.herokuapp.com/';
 
 // *** login actions
 export function login(creds, dispE) {
@@ -43,10 +42,11 @@ export function login(creds, dispE) {
       isAuthenticated: false,
     });
 
-    request.post(server+'api/authenticate')
+    const url = `${server}api/authenticate`;
+    request.post(url)
       .type('form')
       .send({ username: creds.username, password: creds.password })
-      .end(function (err, response) {
+      .end((err, response) => {
         if (err) {
           dispatch({
             type: LOGIN_FAILURE,
@@ -55,8 +55,7 @@ export function login(creds, dispE) {
             message: response.body.message,
           });
           dispE(response.body.message);
-        }
-        else if (!response.body.success) {
+        } else if (!response.body.success) {
           dispatch({
             type: LOGIN_FAILURE,
             isFetching: false,
@@ -64,8 +63,7 @@ export function login(creds, dispE) {
             message: response.body.message,
           });
           dispE(response.body.message);
-        }
-        else {
+        } else {
           localStorage.setItem('token', response.body.token);
           dispatch({
             type: LOGIN_SUCCESS,
@@ -94,18 +92,18 @@ export function logout() {
 
 
 // *** register actions
-export function registerUser(creds,dispE) {
+export function registerUser(creds, dispE) {
   return (dispatch) => {
     dispatch({
       type: REGISTER_REQUEST,
       isFetching: true,
       isAuthenticated: false,
     });
-
-    request.post(server+'api/register')
+    const url = `${server}api/register`;
+    request.post(url)
       .type('form')
-      .send({ username: creds.username, email:creds.email, password: creds.password })
-      .end(function (err, response) {
+      .send({ username: creds.username, email: creds.email, password: creds.password })
+      .end((err, response) => {
         if (err) {
           dispatch({
             type: REGISTER_FAILURE,
@@ -114,8 +112,7 @@ export function registerUser(creds,dispE) {
             message: response.body.message,
           });
           dispE(response.body.message);
-        }
-        else if (!response.body.success) {
+        } else if (!response.body.success) {
           dispatch({
             type: REGISTER_FAILURE,
             isFetching: false,
@@ -123,8 +120,7 @@ export function registerUser(creds,dispE) {
             message: response.body.message,
           });
           dispE(response.body.message);
-        }
-        else {
+        } else {
           localStorage.setItem('token', response.body.token);
           dispatch({
             type: REGISTER_SUCCESS,
@@ -136,17 +132,17 @@ export function registerUser(creds,dispE) {
           dispatch(push('/home'));
         }
       });
-  }
+  };
 }
 
 
 // *** summary actions
-export function getSummaries(){
+export function getSummaries() {
   return (dispatch) => {
     dispatch({
       type: GETTING_SUMMARIES,
     });
-    let url = server+'api/summaries'
+    const url = `${server}api/summaries`;
     request
       .get(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
@@ -164,7 +160,7 @@ export function getSummaries(){
           });
         }
       });
-  }
+  };
 }
 
 export function summarizeUrl(article) {
@@ -182,14 +178,14 @@ export function summarizeUrl(article) {
     async.waterfall([
       // make sure authentication is valid.
       // if not, authReq will redirect the user to the login page.
-      function (callback) {
-        authReq(dispatch, function (token) {
+      function checkAuthentication(callback) {
+        authReq(dispatch, (token) => {
           callback(null, token);
         });
       },
       // Fetch summary from api with token attached
-      function (token, callback) {
-        const url = `http://localhost:8080/api/summarizeURL/${urlencode(article)}`;
+      function fetchSummary(token, callback) {
+        const url = `${server}api/summarizeURL/${urlencode(article)}`;
         request
           .get(url)
           .set({ 'x-access-token': token })
@@ -228,14 +224,14 @@ export function summarizeText(article, title) {
     });
 
     async.waterfall([
-      function (callback){
-        authReq(dispatch, function (token) {
+      function checkAuthentication(callback) {
+        authReq(dispatch, (token) => {
           callback(null, token);
         });
       },
-      function (token, callback) {
+      function fetchSummary(token, callback) {
         // Fetch summary from api
-        const url = `http://localhost:8080/api/summarizeText/${urlencode(title)}/${urlencode(article)}`;
+        const url = `${server}api/summarizeText/${urlencode(title)}/${urlencode(article)}`;
         request
           .get(url)
           .set({ 'x-access-token': token })
@@ -252,9 +248,10 @@ export function summarizeText(article, title) {
                 id: response.body.id,
                 summary: response.body.summary,
                 title: response.body.title,
+                summaryDate: response.body.summaryDate,
               });
             }
-        });
+          });
         callback(null);
       },
     ]);
@@ -263,48 +260,49 @@ export function summarizeText(article, title) {
 
 export function deleteSummary(id) {
   return (dispatch) => {
-    const url = server+'api/'+id;
+    const url = `${server}api/${id}`;
     request
       .delete(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
       .end((err, response) => {
         if (err) {
           // a spot for future error display if desired
-        }
-        else if (response.success === false) {
+        } else if (response.success === false) {
           // a spot for future error display if desired
-        }
-        else{
+        } else {
           dispatch({
             type: DELETE_SUMMARY,
             id,
           });
         }
       });
-  }
+  };
 }
 
 export function showFullText(id) {
   return (dispatch) => {
-    var url = server+'api/fullText/'+id;
+    const url = `${server}api/fullText/${id}`;
     request
       .get(url)
       .set({ 'x-access-token': localStorage.getItem('token') })
       .end((err, response) => {
-        if(err){
-          console.error('API error');
-        }
-        else{
+        if (err) {
+          // insert some kind of error handling
+        } else {
           dispatch({
             type: SHOW_FULL_TEXT,
             id,
             title: response.body.title,
             article: response.body.article,
+            publishDate: response.body.publishDate,
+            summaryDate: response.body.summaryDate,
+            url: response.body.url,
+            author: response.body.author,
           });
           dispatch(push('/fullText'));
         }
       });
-  }
+  };
 }
 
 // *** display error actions
@@ -315,7 +313,7 @@ export function displayError(error) {
       error,
     });
 
-    setTimeout(function () {
+    setTimeout(() => {
       dispatch({
         type: HIDE_ERROR,
       });
@@ -325,33 +323,33 @@ export function displayError(error) {
 
 
 // *auth checks (no actions actually dispatched since the actions are url changes)
-export function authUrl(){
+export function authUrl() {
   return (dispatch) => {
-    let token = localStorage.getItem('token') || null;
-    let decoded = token ? jwtDecode(token) : null;
+    const token = localStorage.getItem('token') || null;
+    const decoded = token ? jwtDecode(token) : null;
     // if no token, or it is expired...
-    if ( !token || decoded.exp < (Date.now()/1000) ) {
+    if (!token || decoded.exp < (Date.now() / 1000)) {
       localStorage.removeItem('token');
       dispatch(push('/'));
     }
-  }
-};
+  };
+}
 
-export function authed(){
+export function authed() {
   return (dispatch) => {
-    let token = localStorage.getItem('token') || null;
-    let decoded = token ? jwtDecode(token) : null;
+    const token = localStorage.getItem('token') || null;
+    const decoded = token ? jwtDecode(token) : null;
     // if no token, or it is expired...
-    if ( token && decoded.exp > (Date.now()/1000) ) {
+    if (token && decoded.exp > (Date.now() / 1000)) {
       dispatch(push('/home'));
     }
-  }
-};
+  };
+}
 
 
 // *utility
 export function goTo(path) {
   return (dispatch) => {
     dispatch(push(path));
-  }
+  };
 }

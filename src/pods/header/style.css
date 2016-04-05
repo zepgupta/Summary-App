@@ -7,6 +7,8 @@
 	bottom: 95%;
 	background-color: #1F2421;
 	z-index: 1;
+	border-bottom-color: #216869;
+	border-style: solid;
 }
 
 	.logo {
@@ -33,7 +35,6 @@
 		    position: absolute;  
 		    top: 0;  
 		    bottom: 0;  
-		    left: 0;  
 		    right: 0;  
 		    margin: auto;
 		    background-color: #49A078;

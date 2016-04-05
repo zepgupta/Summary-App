@@ -10,10 +10,10 @@
 	}
 		.titleLine{
 			display: flex;
+			justify-content: space-between;
 		}
 
 			.title {
-				width: 80%;
 				color: #1F2421;
 				font-weight: bold;
 			}

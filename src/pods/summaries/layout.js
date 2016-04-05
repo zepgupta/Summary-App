@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Summary from 'pods/summaries/summary/container';
 
 import styles from './style.css';
 
 export default class SummariesLayout extends React.Component {
+  static propTypes = {
+    summaries: PropTypes.array.isRequired,
+  };
 
   render() {
-
-    let sums = [];
+    const sums = [];
     for (let i = 0; i < this.props.summaries.length; i++) {
       sums.push(
         <Summary
-          key={'summary' + i}
-          className="summary"
+          key={`summary${i}`}
           summary={this.props.summaries[i].summary}
           title={this.props.summaries[i].title}
           id={this.props.summaries[i].id}

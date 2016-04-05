@@ -4,10 +4,12 @@ import styles from './style.css';
 
 export default class SummarizerLayout extends React.Component {
   static propTypes = {
+
     summarizeUrl: PropTypes.func.isRequired,
     summarizeText: PropTypes.func.isRequired,
     displayError: PropTypes.func.isRequired,
     inputType: React.PropTypes.string,
+    error: React.PropTypes.string,
   };
 
   state = {
@@ -27,45 +29,41 @@ export default class SummarizerLayout extends React.Component {
       // if there is a payload in the text area
       if (this.state.article.length < 1) {
         this.props.displayError('Please enter a URL in the text field');
-      }
-      else {
+      } else {
         this.props.summarizeUrl(this.state.article);
       }
-    }
-    // if text is selected...
-    else {
+    } else { // else if text is selected...
       // if no payload in text area or title area...
       if (this.state.article.length < 1 || this.state.title.length < 1) {
         this.props.displayError('Enter a title and text to be summarized');
-      }
-      else {
-        this.props.article = '';
-        this.props.title = '';
+      } else {
         this.props.summarizeText(this.state.article, this.state.title);
       }
     }
   }
 
   render() {
-    let html = [];
+    let html;
     // if text is selected...
     if (this.props.inputType === 'text') {
+      html = [];
       html.push(
         <div>
           <p className={styles.inputLabel}>Title</p>
           <input
             className={styles.textInput}
             type="text"
-            onChange= {e => this.setState({ title: e.target.value })}
+            onChange= {(e) => { this.setState({ title: e.target.value }); }}
             value={this.state.title}
           />
         </div>
       );
     }
 
-    let error = [];
+    let error;
     // if error dispatched
     if (this.props.error !== '') {
+      error = [];
       error.push(
         <div>
           <p className={styles.error}> {this.props.error} </p>

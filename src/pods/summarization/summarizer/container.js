@@ -5,16 +5,13 @@ import { summarizeUrl, summarizeText, displayError } from 'pods/actions';
 import Layout from './layout';
 
 function mapStateToProps(state) {
+  let error;
   if (state.error.length > 0) {
-    return {
-      error: state.error[state.error.length-1].error,
-    };
+    error = { error: state.error[state.error.length - 1].error };
+  } else {
+    error = { error: '' };
   }
-  else {
-    return {
-      error: '',
-    };
-  }
+  return error;
 }
 
 function mapDispatchToProps(dispatch) {

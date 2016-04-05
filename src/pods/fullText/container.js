@@ -8,6 +8,10 @@ function mapStateToProps(state) {
   return {
     title: state.fullText[0].title,
     article: state.fullText[0].article,
+    summaryDate: state.fullText[0].summaryDate,
+    publishDate: state.fullText[0].publishDate,
+    author: state.fullText[0].author,
+    url: state.fullText[0].url,
   };
 }
 

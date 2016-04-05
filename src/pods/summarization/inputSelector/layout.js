@@ -1,6 +1,6 @@
 import React from 'react';
 import Summarizer from 'pods/summarization/summarizer/container';
-const RadioGroup = require('react-radio-group');
+import RadioGroup from 'react-radio-group';
 
 import styles from './style.css';
 
@@ -20,7 +20,11 @@ export default class InputSelector extends React.Component {
       <div className={styles.inputPanel}>
         <p className={styles.inputLabel}>Input Type:</p>
         <div className={styles.radio}>
-          <RadioGroup name="Input Type" selectedValue={this.state.selectedValue} onChange={this.handleChange}>
+          <RadioGroup
+            name="Input Type"
+            selectedValue={this.state.selectedValue}
+            onChange={this.handleChange}
+          >
              {Radio => (
               <div className={styles.radio}>
                 <Radio key="url" value="url" />URL

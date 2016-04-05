@@ -8,6 +8,7 @@ import styles from './style.css';
 
 export default class SummariesMainLayout extends React.Component {
   static propTypes = {
+    authUrl: PropTypes.func.isRequired,
     getSummaries: PropTypes.func.isRequired,
   };
 

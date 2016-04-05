@@ -9,7 +9,7 @@ export default class HeaderLayout extends React.Component {
     logout: PropTypes.func.isRequired,
   };
 
-   handleLogout = () => {
+  handleLogout = () => {
     this.props.logout();
   }
 
@@ -18,7 +18,11 @@ export default class HeaderLayout extends React.Component {
       <div className={styles.header}>
         <img src={logo} className={styles.logo} />
         <div className={styles.buttonArea}>
-          <button className={styles.logout} type="button" onClick={this.handleLogout}>Logout</button>
+          <button
+            className={styles.logout}
+            type="button"
+            onClick={this.handleLogout}
+          >Logout</button>
         </div>
       </div>
     );

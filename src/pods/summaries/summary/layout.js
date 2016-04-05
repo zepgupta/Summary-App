@@ -13,11 +13,11 @@ export default class SummaryLayout extends React.Component {
   };
 
   handleDelete = () => {
-    this.props.deleteSummary( this.props.id );
+    this.props.deleteSummary(this.props.id);
   }
 
   handleView = () => {
-    this.props.showFullText( this.props.id );
+    this.props.showFullText(this.props.id);
   }
 
   render() {
@@ -26,11 +26,11 @@ export default class SummaryLayout extends React.Component {
         <div className={styles.main}>
           <div className={styles.titleLine}>
             <h3 className={styles.title}>{this.props.title}</h3>
-            <h3 className={styles.date}>Summarized on:   {this.props.summaryDate}</h3>
+            <h3 className={styles.date}>Summarized on: {this.props.summaryDate}</h3>
           </div>
           <p className={styles.text}>{this.props.summary}</p>
         </div>
-        <div className={styles.buttons}>  
+        <div className={styles.buttons}>
           <button className={styles.button} onClick={this.handleDelete}>Delete</button>
           <button className={styles.button} onClick={this.handleView}>Full Text</button>
         </div>

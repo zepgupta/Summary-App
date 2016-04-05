@@ -25,4 +25,9 @@
 .error {
 	color: red;
 	font-size: 1.2em;
+	position: fixed;
+	top: 30%;
+	bottom: 68%;
+	left: 10%;
+	right: 0;
 }

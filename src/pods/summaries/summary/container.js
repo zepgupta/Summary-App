@@ -12,8 +12,8 @@ function mapStateToProps() {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-  	deleteSummary,
-  	showFullText,
+    deleteSummary,
+    showFullText,
   }, dispatch);
 }
 

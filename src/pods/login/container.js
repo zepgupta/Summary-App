@@ -6,16 +6,17 @@ import Layout from './layout';
 
 // question: when should i map state to props and when should i use data straight out of state
 function mapStateToProps(state) {
+  let error;
   if (state.error.length > 0) {
-    return {
-      error: state.error[state.error.length-1].error,
+    error = {
+      error: state.error[state.error.length - 1].error,
     };
-  }
-  else {
-    return {
+  } else {
+    error = {
       error: '',
     };
   }
+  return error;
 }
 
 function mapDispatchToProps(dispatch) {

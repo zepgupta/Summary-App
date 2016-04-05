@@ -36,7 +36,6 @@ function updateSummaries(summariesState, id, title, summary, summaryDate) {
 export function summaries(state = [], action) {
   let nState;
   switch (action.type) {
-    
     case GETTING_SUMMARIES:
       return state;
 
@@ -75,13 +74,17 @@ export function summaries(state = [], action) {
   }
 }
 
-export function fullText(state=[], action) {
-  switch(action.type) {
+export function fullText(state = [], action) {
+  switch (action.type) {
     case SHOW_FULL_TEXT:
       return [{
         id: action.id,
         title: action.title,
         article: action.article,
+        publishDate: action.publishDate,
+        summaryDate: action.summaryDate,
+        url: action.url,
+        author: action.author,
       }, ...state];
 
     default:
@@ -92,7 +95,6 @@ export function fullText(state=[], action) {
 // error reducer
 export function error(state = [], action) {
   switch (action.type) {
-    
     case DISPLAY_ERROR:
       return [...state, {
         error: action.error,
@@ -110,9 +112,9 @@ export function error(state = [], action) {
 
 // login reducer
 export function login(state = {
-    isFetching: false,
-    isAuthenticated: localStorage.getItem('token') ? true : false,
-  }, action) {
+  isFetching: false,
+  isAuthenticated: localStorage.getItem('token') !== null,
+}, action) {
   switch (action.type) {
 
     case LOGIN_REQUEST:
