@@ -70,90 +70,88 @@ export default class LoginLayout extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.page}>
         {error}
         <div className={styles.introPanel}>
-          <div className={styles.logoPanel}>
+          <div className={styles.logoContainer}>
             <img src={logo} className={styles.logo} />
           </div>
-          <div className={styles.explanation}>
-            <div className={styles.intro}>
-              <p>"I like to read articles, but there are too many
-               out there of interest and not enough time."</p>
-              <p className={styles.text}>This is a utility app that will
-               allow you to provide a url to an article or some text, and
-               will maintain a list of summaries for you to review when you have time.</p>
-            </div>
+          <div className={styles.intro}>
+            <p className={styles.text}>"I like to read articles, but there are too many
+             out there of interest and not enough time."</p>
+            <p className={styles.text}>This is a utility app that will
+             allow you to provide a url to an article or some text, and
+             will maintain a list of summaries for you to review when you have time.</p>
           </div>
         </div>
-          <div className={styles.bottomPanel}>
-            <div className={styles.loginPanel}>
-              <h3 className={styles.title}>Login</h3>
-              <div className={styles.inputs}>
-                <p className={styles.label}>Username</p>
-                <input
-                  type="text"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ username: e.target.value }); }}
-                  value={this.state.username}
-                  placeholder="Username"
-                />
-                <p className={styles.label}>Password</p>
-                <input
-                  type="password"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ password: e.target.value }); }}
-                  value={this.state.password}
-                  placeholder="Password"
-                />
-                <div className={styles.button}>
-                  <button type="submit" onClick={this.handleLogin}>Login</button>
-                </div>
-              </div>
-            </div>
-            <div className={styles.registerPanel}>
-              <h3 className={styles.title}>Register</h3>
-              <div className={styles.inputs}>
-                <p className={styles.label}>Choose a username</p>
-                <input
-                  type="text"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ rUsername: e.target.value }); }}
-                  value={this.state.rUsername}
-                  placeholder="Username"
-                />
-                <p className={styles.label}>Your email</p>
-                <input
-                  type="text"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ rEmail: e.target.value }); }}
-                  value={this.state.rEmail}
-                  placeholder="Email"
-                />
-                <p className={styles.label}>Choose a password</p>
-                <input
-                  type="password"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ rPassword: e.target.value }); }}
-                  value={this.state.rPassword}
-                  placeholder="Password"
-                />
-                <p className={styles.label}>Confirm password</p>
-                <input
-                  type="password"
-                  className={styles.input}
-                  onChange= {(e) => { this.setState({ rCPassword: e.target.value });}}
-                  value={this.state.rCPassword}
-                  placeholder="Confirm Password"
-                />
-                <div className={styles.button}>
-                  <button type="submit" onClick={this.handleRegister}>Register</button>
-                </div>
+        <div className={styles.bottomPanel}>
+          <div className={styles.loginPanel}>
+            <h3 className={styles.title}>Login</h3>
+            <div className={styles.inputs}>
+              <p className={styles.label}>1. Enter your username</p>
+              <input
+                type="text"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ username: e.target.value }); }}
+                value={this.state.username}
+                placeholder="Username"
+              />
+              <p className={styles.label}>2. Enter your password</p>
+              <input
+                type="password"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ password: e.target.value }); }}
+                value={this.state.password}
+                placeholder="Password"
+              />
+              <div className={styles.button}>
+                <button type="submit" onClick={this.handleLogin}>Login</button>
               </div>
             </div>
           </div>
-          <Footer />
+          <div className={styles.registerPanel}>
+            <h3 className={styles.title}>Register</h3>
+            <div className={styles.inputs}>
+              <p className={styles.label}>1. Choose a username</p>
+              <input
+                type="text"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ rUsername: e.target.value }); }}
+                value={this.state.rUsername}
+                placeholder="Username"
+              />
+              <p className={styles.label}>2. Enter your email address</p>
+              <input
+                type="text"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ rEmail: e.target.value }); }}
+                value={this.state.rEmail}
+                placeholder="Email"
+              />
+              <p className={styles.label}>3. Choose a password</p>
+              <input
+                type="password"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ rPassword: e.target.value }); }}
+                value={this.state.rPassword}
+                placeholder="Password"
+              />
+              <p className={styles.label}>4. Confirm your password</p>
+              <input
+                type="password"
+                className={styles.input}
+                onChange= {(e) => { this.setState({ rCPassword: e.target.value });}}
+                value={this.state.rCPassword}
+                placeholder="Confirm Password"
+              />
+              <div className={styles.button}>
+                <button type="submit" onClick={this.handleRegister}>Register</button>
+              </div>
+            </div>
+          </div>
         </div>
+        <Footer />
+      </div>
     );
   }
 }

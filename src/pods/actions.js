@@ -54,6 +54,7 @@ export function login(creds, dispE) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          document.body.style.cursor = 'auto';
           dispE(response.body.message);
         } else if (!response.body.success) {
           dispatch({
@@ -62,6 +63,7 @@ export function login(creds, dispE) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          document.body.style.cursor = 'auto';
           dispE(response.body.message);
         } else {
           localStorage.setItem('token', response.body.token);
@@ -113,6 +115,7 @@ export function registerUser(creds, dispE) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          document.body.style.cursor = 'auto';
           dispE(response.body.message);
         } else if (!response.body.success) {
           dispatch({
@@ -121,6 +124,7 @@ export function registerUser(creds, dispE) {
             isAuthenticated: false,
             message: response.body.message,
           });
+          document.body.style.cursor = 'auto';
           dispE(response.body.message);
         } else {
           localStorage.setItem('token', response.body.token);
