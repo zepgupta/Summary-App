@@ -1,122 +1,61 @@
 .introPanel {
-	position: fixed;
-	top: 0;
-	bottom: 70%;
-	left: 0;
-	right: 0;
 	background-color: #1F2421;
-	font-family: abel;
-	color: #9CC5A1;
 }
-	
+.introPanel:after {
+	clear: both;
+	display: flex;
+	flex-direction: row;
+}	
+
 	.logoPanel {
-		position: absolute;
-		left: 0;
-		right:50%;
-		top:0;
-		bottom:0;
+		float: left;
+		width: 50%;
+
 	}
 
 		.logo {
-			max-height: 100%;  
-		    max-width: 100%; 
-		    width: auto;
-		    height: auto;
-		    position: absolute;  
-		    top: 0;  
-		    bottom: 0;  
-		    left: 0;  
-		    right: 0;  
-		    margin: auto;
+			
 		}
 
 	.explanation {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-		left: 50%;
-		font-size: 1.7em;
+		float: right;
+		
 	}
 
 		.intro {
-			margin: auto;
-			position: absolute;
-			top: 0; left: 0; bottom: 0; right: 0;
-			height: 50%;
-			width: 90%;
-			text-align: center;
+
 		}
 
 			.text {
-				padding-top: 1em;
 			}
 
 .bottomPanel {
-	position: fixed;
-	top: 30%;
-	bottom: 2%;
-	left: 0;
-	right: 0;
-	font-family: abel;
-	color: #1F2421;
+	clear: both;
 }
 
 	.loginPanel {
-		position: absolute;
-		left: 0;
-		right: 50%;
-		top: 0;
-		bottom: 0;
-		background-color: #216869;
 	}
 
 	.registerPanel {
-		position: absolute;
-		left: 50%;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background-color: #DCE1DE;
 	}
 
 	.title {
-		text-align: center;
-		font-size: 3em;
-
 	}
 
 	.inputs {
-		position: absolute;
-		top: 10%;
-		left: 30%;
-		right: 30%;
-		font-size: 1.5em;
-	}
+		}
 
 		.input {
-			width: 100%;
+		
 		}
 
 		.label {
-			margin-top: 5%;
-			font-size: 1.2em;
+		
 		}
 
 		.button {
-			margin: 5% auto;
-			text-align: center;
+		
 		}
 
 .error {
-	position: fixed;
-	top: 28%;
-	bottom: 70%;
-	left: 0;
-	right: 0;
-	height: 2%;
-	text-align: center;
-	color: red;
-	font-size: 1.2em;
-	z-index: 1;
 }

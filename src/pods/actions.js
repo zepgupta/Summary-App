@@ -30,8 +30,8 @@ const {
   REGISTER_FAILURE,
 } = actionTypes;
 
-const server = 'http://localhost:8080/';
-// const server = 'https://aqueous-ravine-72933.herokuapp.com/';
+// const server = 'http://localhost:8080/';
+const server = 'https://aqueous-ravine-72933.herokuapp.com/';
 
 // *** login actions
 export function login(creds, dispE) {
@@ -41,7 +41,7 @@ export function login(creds, dispE) {
       isFetching: true,
       isAuthenticated: false,
     });
-
+    document.body.style.cursor = 'wait';
     const url = `${server}api/authenticate`;
     request.post(url)
       .type('form')
@@ -72,6 +72,7 @@ export function login(creds, dispE) {
             message: 'Login successful',
             token: response.body.token,
           });
+          document.body.style.cursor = 'auto';
           dispatch(push('/home'));
         }
       });
@@ -99,6 +100,7 @@ export function registerUser(creds, dispE) {
       isFetching: true,
       isAuthenticated: false,
     });
+    document.body.style.cursor = 'wait';
     const url = `${server}api/register`;
     request.post(url)
       .type('form')
@@ -129,6 +131,7 @@ export function registerUser(creds, dispE) {
             message: 'Login successful',
             token: response.body.token,
           });
+          document.body.style.cursor = 'auto';
           dispatch(push('/home'));
         }
       });
@@ -142,6 +145,7 @@ export function getSummaries() {
     dispatch({
       type: GETTING_SUMMARIES,
     });
+    document.body.style.cursor = 'wait';
     const url = `${server}api/summaries`;
     request
       .get(url)
@@ -159,6 +163,7 @@ export function getSummaries() {
             summaries: response.body.summaries,
           });
         }
+        document.body.style.cursor = 'auto';
       });
   };
 }
@@ -185,6 +190,7 @@ export function summarizeUrl(article) {
       },
       // Fetch summary from api with token attached
       function fetchSummary(token, callback) {
+        document.body.style.cursor = 'wait';
         const url = `${server}api/summarizeURL/${urlencode(article)}`;
         request
           .get(url)
@@ -205,6 +211,7 @@ export function summarizeUrl(article) {
                 summaryDate: response.body.summaryDate,
               });
             }
+            document.body.style.cursor = 'auto';
           });
         callback(null);
       },
@@ -231,6 +238,7 @@ export function summarizeText(article, title) {
       },
       function fetchSummary(token, callback) {
         // Fetch summary from api
+        document.body.style.cursor = 'wait';
         const url = `${server}api/summarizeText/${urlencode(title)}/${urlencode(article)}`;
         request
           .get(url)
@@ -251,6 +259,7 @@ export function summarizeText(article, title) {
                 summaryDate: response.body.summaryDate,
               });
             }
+            document.body.style.cursor = 'auto';
           });
         callback(null);
       },
