@@ -48,7 +48,7 @@ export default class SummarizerLayout extends React.Component {
     if (this.props.inputType === 'text') {
       html = [];
       html.push(
-        <div>
+        <div className={styles.titleArea}>
           <p className={styles.inputLabel}>Title</p>
           <input
             className={styles.textInput}
@@ -72,14 +72,16 @@ export default class SummarizerLayout extends React.Component {
     }
 
     return (
-      <div>
+      <div className={styles.summarizer}>
         {html}
-        <p className={styles.inputLabel}>Article</p>
-        <textarea
-          className={styles.textArea}
-          value={this.state.article}
-          onChange={this.handleChange}
-        />
+        <div className={styles.articleArea}>
+          <p className={styles.inputLabel}>Article</p>
+          <textarea
+            className={styles.textArea}
+            value={this.state.article}
+            onChange={this.handleChange}
+          />
+        </div>
         <button className={styles.button} onClick={this.handleSubmit} >Submit</button>
       {error}
       </div>

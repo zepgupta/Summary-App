@@ -1,33 +1,45 @@
-.inputLabel {
-	font-size: 1.5em;
-	font-weight: bold;
+.summarizer {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: space-around;
+	flex: 1;
+	overflow: auto;
 }
 
-.textInput {
-	width: 100%;
+.titleArea {
+	display: flex;
+	flex-direction: column;
 }
 
-.textArea {
-	width: 100%;
-	height: 10%;
-	max-height: 10%;
-	max-width: 100%;
-	resize: none;
+	.inputLabel {
+		font-size: 1.2em;
+		font-weight: bold;
+		margin-left: 1%;
+	}
+
+	.textInput {
+		width: 96%;
+		align-self: center;
+	}
+
+.articleArea {
+	display: flex;
+	flex-direction: column;
 }
+
+	.textArea {
+		width: 96%;
+		resize: none;
+		align-self: center;
+	}
 
 .button {
-	background-color: #1F2421;
-	color: #9CC5A1;
-	border: none;
-	font-size: 1em;
+	font-weight: bold;
+	width: 96%;
+	align-self: center;
 }
 
 .error {
-	color: red;
-	font-size: 1.2em;
-	position: fixed;
-	top: 30%;
-	bottom: 68%;
-	left: 10%;
-	right: 0;
+	
 }

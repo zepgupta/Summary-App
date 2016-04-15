@@ -1,0 +1,33 @@
+.inputLabel {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.textInput {
+	width: 100%;
+}
+
+.textArea {
+	width: 100%;
+	height: 10%;
+	max-height: 10%;
+	max-width: 100%;
+	resize: none;
+}
+
+.button {
+	background-color: #1F2421;
+	color: #9CC5A1;
+	border: none;
+	font-size: 1em;
+}
+
+.error {
+	color: red;
+	font-size: 1.2em;
+	position: fixed;
+	top: 30%;
+	bottom: 68%;
+	left: 10%;
+	right: 0;
+}

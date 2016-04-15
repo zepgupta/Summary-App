@@ -18,22 +18,26 @@ export default class InputSelector extends React.Component {
   render() {
     return (
       <div className={styles.inputPanel}>
-        <p className={styles.inputLabel}>Input Type:</p>
-        <div className={styles.radio}>
-          <RadioGroup
-            name="Input Type"
-            selectedValue={this.state.selectedValue}
-            onChange={this.handleChange}
-          >
-             {Radio => (
-              <div className={styles.radio}>
-                <Radio key="url" value="url" />URL
-                <Radio key="text" value="text" />Text
-              </div>
-            )}
-          </RadioGroup>
+        <div className ={styles.radioSection}>
+          <p className={styles.inputLabel}>Input Type: </p>
+          <div className={styles.radio}>
+            <RadioGroup
+              name="Input Type"
+              selectedValue={this.state.selectedValue}
+              onChange={this.handleChange}
+            >
+               {Radio => (
+                <div className={styles.radio}>
+                  <Radio key="url" value="url" />URL
+                  <Radio key="text" value="text" />Text
+                </div>
+              )}
+            </RadioGroup>
+          </div>
         </div>
-        <Summarizer inputType={this.state.selectedValue} />
+        <div className={styles.summarizer}>
+          <Summarizer inputType={this.state.selectedValue} />
+        </div>
       </div>
     );
   }

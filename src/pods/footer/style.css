@@ -1,15 +1,26 @@
-.footer {
-	height: 2%;
-	position: fixed;
-	top: 98%;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #1F2421;
-	z-index: 1;
-	text-align: center;
-	color: #49A078;
-	border-top: #216869;
-	border-width: 2px;
-	border-top-style: solid;
+@media (min-width: 300px) {
+	.footer {
+		background-color: #1F2421;
+		color: #49A078;
+		text-align: center;
+	}
+}
+
+@media (min-width: 900px) {
+	.footer {
+		height: 2%;
+		position: fixed;
+		top: 98%;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #1F2421;
+		z-index: 1;
+		text-align: center;
+		color: #49A078;
+		border-top: #216869;
+		border-width: 2px;
+		border-top-style: solid;
+		font-size: .7em;
+	}
 }

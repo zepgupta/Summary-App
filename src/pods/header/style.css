@@ -1,43 +1,72 @@
-.header {
-	height: 5%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 95%;
-	background-color: #1F2421;
-	z-index: 1;
-	border-bottom-color: #216869;
-	border-style: solid;
+@media (max-width: 900px) {
+	.header {
+		display: flex;
+	}
+
+		.logo {
+			width: 50%;
+			height: 100%;
+		}
+
+		.buttonArea {
+			width: 50%;
+			display: flex;
+			flex: 1;
+		}
+
+			.logout {
+				width: 100%;
+				height: auto;
+				font-family: abel;
+				font-weight: bold;
+				background-color: #49A078;
+			    border: none;
+			    color: #1F2421;
+			}
 }
 
-	.logo {
-		max-width: 100%;
-		max-height: 100%;
-	}
-
-	.buttonArea {
-		position: absolute;
-		left: 97%;
-		right: 0;
+@media (min-width: 900px) {
+	.header {
+		height: 5%;
+		position: fixed;
 		top: 0;
-		bottom: 0;
-		font-family: abel;
-		font-weight: bold;
-		font-size: 1.2em;
+		left: 0;
+		right: 0;
+		bottom: 95%;
+		background-color: #1F2421;
+		z-index: 1;
+		border-bottom-color: #216869;
+		border-style: solid;
 	}
 
-		.logout {
-			max-height: 85%;  
-		    width: 5%; 
-		    width: auto;
-		    height: auto;
-		    position: absolute;  
-		    top: 0;  
-		    bottom: 0;  
-		    right: 0;  
-		    margin: auto;
-		    background-color: #49A078;
-		    border: none;
-		    color: #1F2421;
+		.logo {
+			max-width: 100%;
+			max-height: 100%;
 		}
+
+		.buttonArea {
+			position: absolute;
+			left: 97%;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			font-family: abel;
+			font-weight: bold;
+			font-size: 1.2em;
+		}
+
+			.logout {
+				max-height: 85%;  
+			    width: 5%; 
+			    width: auto;
+			    height: auto;
+			    position: absolute;  
+			    top: 0;  
+			    bottom: 0;  
+			    right: 0;  
+			    margin: auto;
+			    background-color: #49A078;
+			    border: none;
+			    color: #1F2421;
+			}
+}

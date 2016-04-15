@@ -1,7 +1,15 @@
-.mainPanel {
-	position: fixed;
-	top: 5%;
-	left: 0;
-	right: 0;
-	bottom: 2%;
+@media (max-width: 900px){
+	.mediaPanel {
+		height: 100%;
+	}
+}
+
+@media (min-width: 900px){
+	.mainPanel {
+		position: fixed;
+		top: 5%;
+		left: 0;
+		right: 0;
+		bottom: 2%;
+	}
 }
