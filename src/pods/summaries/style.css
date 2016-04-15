@@ -1,16 +1,32 @@
-.summaryPanel {
-	overflow: auto;
-	position: absolute;
-	top: 30%;
-	bottom: 0;
-	left: 0;
-	right:0;
-	background-color: #1F2421;
-	font-family: abel;
+@media (max-width: 900px) {
+	.summaryPanel {
+		background-color: #1F2421;
+		font-family: abel;
+	}
+
+	.title {
+		text-align: center;
+		color: #49A078;
+		font-weight: bold;
+	}
 }
 
-.title {
-	text-align: center;
-	color: #49A078;
-	font-weight: bold;
+@media (min-width: 900px) {
+	.summaryPanel {
+		overflow: auto;
+		position: absolute;
+		top: 30%;
+		bottom: 0;
+		left: 0;
+		right:0;
+		background-color: #1F2421;
+		font-family: abel;
+	}
+
+	.title {
+		margin: 0 0 0 0;
+		text-align: center;
+		color: #49A078;
+		font-weight: bold;
+	}
 }

@@ -1,71 +1,125 @@
-.background {
-	background-color: #1F2421;
-	position: fixed;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
-	.fullText {
-		background-color: #DCE1DE;
-		position: fixed;
-		left: 12%;
-		right: 12%;
-		top: 5%;
-		bottom: 2%;
-		font-family: abel;
-		overflow: auto;
+@media (max-width: 900px) {
+	.background {
+		background-color: #1F2421;
+		display: flex;
+		flex-direction: column;
 	}
 
-		.titleBar {
+		.fullText {
+			font-family: abel;
+			color: #1F2421;
+			flex: 1;
 			background-color: #216869;
 		}
 
-			.title {
-				text-align: center;
-				color: #DCE1DE;
-				padding-top: 2%;
-				padding-bottom: 2%;
-				margin: 0 0 0 0;
-				font-size: 2.2em;
+			.titleBar {
+				background-color: #216869;
+				padding-left: 10px;
+				padding-right: 10px;
+				margin-top: 10px;
+				margin-bottom: 10px;
 			}
 
-			.titleInfo {
-				display: flex;
-				flex-direction: row;
-				justify-content: space-between;
-				padding-left: 2%;
-				padding-right: 2%;
-			}
-
-				.info {
-					font-size: 1.2em;
-					color: #1F2421;
+				.title {
+					font-weight: bold;
 				}
 
-		.articlePanel {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-around;
-			align-items: center;
-			padding-left: 10%;
-			padding-right: 10%;
-			padding-top: 5%;
-			padding-bottom: 2%;
+				.titleInfo {
+					margin: 0;
+				}
+
+					.info {
+						margin: 0;
+					}
+
+			.articlePanel {
+				background-color: #DCE1DE;
+				padding: 10px;
+				display: flex;
+				flex-direction: column;
+			}
+
+				.article {
+					font-size: 1.1em;
+				}
+
+				.back {
+					background-color: #1F2421;
+				    color: #9CC5A1;
+				    border: none;
+				    font-size: 1.2em;
+				}
+}
+
+@media (min-width: 900px) {
+	.background {
+		background-color: #1F2421;
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
+
+		.fullText {
+			background-color: #DCE1DE;
+			position: fixed;
+			left: 12%;
+			right: 12%;
+			top: 5%;
+			bottom: 2%;
+			font-family: abel;
+			overflow: auto;
 		}
 
-			.article {
-				font-size: 1.2em;
-				flex-basis: auto;
+			.titleBar {
+				background-color: #216869;
 			}
 
-			.back {
-			    background-color: #1F2421;
-			    color: #9CC5A1;
-			    border: none;
-			    font-size: 1.5em;
-			    flex-basis: auto;
-			    width: 10%;
+				.title {
+					text-align: center;
+					color: #DCE1DE;
+					padding-top: 2%;
+					padding-bottom: 2%;
+					margin: 0 0 0 0;
+					font-size: 2.2em;
+				}
+
+				.titleInfo {
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					padding-left: 2%;
+					padding-right: 2%;
+				}
+
+					.info {
+						font-size: 1.2em;
+						color: #1F2421;
+					}
+
+			.articlePanel {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				align-items: center;
+				padding-left: 10%;
+				padding-right: 10%;
+				padding-top: 5%;
+				padding-bottom: 2%;
 			}
 
+				.article {
+					font-size: 1.2em;
+					flex-basis: auto;
+				}
+
+				.back {
+				    background-color: #1F2421;
+				    color: #9CC5A1;
+				    border: none;
+				    font-size: 1.5em;
+				    flex-basis: auto;
+				    width: 10%;
+				}
+}

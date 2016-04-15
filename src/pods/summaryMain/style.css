@@ -1,6 +1,8 @@
 @media (max-width: 900px){
-	.mediaPanel {
+	.mainPanel {
 		height: 100%;
+		display: flex;
+		flex-direction: column;
 	}
 }
 

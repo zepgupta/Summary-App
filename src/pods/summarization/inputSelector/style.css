@@ -1,14 +1,23 @@
 @media (max-width: 900px) {
 	.inputPanel {
-		
+		background-color: #216869;
+		font-family: abel;
+		display: flex;
+		flex-direction: column;
 	}
 
 		.radioSection {
-		
+			display: flex;
+			flex-direction: row;
+			align-items: center;
 		}
 
 		.inputLabel {
-		
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
 		}
 		
 		.radio {

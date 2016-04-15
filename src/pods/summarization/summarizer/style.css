@@ -1,45 +1,94 @@
-.summarizer {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: space-around;
-	flex: 1;
-	overflow: auto;
-}
+@media (max-width: 900px) {
+	.summarizer {
+		display: flex;
+		flex-direction: column;
+	}
 
-.titleArea {
-	display: flex;
-	flex-direction: column;
-}
+	.titleArea {
+		
+	}
 
-	.inputLabel {
-		font-size: 1.2em;
+		.inputLabel {
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-left: 10px;
+		}
+
+		.textInput {
+			margin-left: 10%;
+			margin-right: 10%;
+			width: 80%;
+		}
+
+	.articleArea {
+		
+	}
+
+		.textArea {
+			margin-left: 10%;
+			margin-right: 10%;
+			width: 80%;
+		}
+
+	.button {
+		margin-left: 10%;
+		margin-right: 10%;
+		margin-top: 10px;
+		margin-bottom: 10px; 
+		width: 80%;
 		font-weight: bold;
-		margin-left: 1%;
 	}
 
-	.textInput {
+	.error {
+		
+	}
+}
+
+
+@media (min-width: 900px) {
+	.summarizer {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		justify-content: space-around;
+		flex: 1;
+		overflow: auto;
+	}
+
+	.titleArea {
+		display: flex;
+		flex-direction: column;
+	}
+
+		.inputLabel {
+			font-size: 1.2em;
+			font-weight: bold;
+			margin-left: 1%;
+		}
+
+		.textInput {
+			width: 96%;
+			align-self: center;
+		}
+
+	.articleArea {
+		display: flex;
+		flex-direction: column;
+	}
+
+		.textArea {
+			width: 96%;
+			resize: none;
+			align-self: center;
+		}
+
+	.button {
+		font-weight: bold;
 		width: 96%;
 		align-self: center;
 	}
 
-.articleArea {
-	display: flex;
-	flex-direction: column;
-}
-
-	.textArea {
-		width: 96%;
-		resize: none;
-		align-self: center;
+	.error {
+		
 	}
-
-.button {
-	font-weight: bold;
-	width: 96%;
-	align-self: center;
-}
-
-.error {
-	
 }
