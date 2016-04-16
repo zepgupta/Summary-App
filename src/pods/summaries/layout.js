@@ -24,7 +24,7 @@ export default class SummariesLayout extends React.Component {
     return (
       <div className={styles.summaryPanel}>
         <h1 className={styles.title}>My Summaries</h1>
-        <div>
+        <div className={styles.theSummaries}>
           {sums}
         </div>
       </div>

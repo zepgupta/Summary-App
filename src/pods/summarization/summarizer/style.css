@@ -39,9 +39,22 @@
 		font-weight: bold;
 	}
 
-	.error {
-		
+	.errorContainer {
+		position: fixed;
+		top: 45%;
+		bottom: 45%;
+		left: 0;
+		right: 0;
+		z-index: 2;
 	}
+
+		.error {
+			color: red;
+			font-size: 1.5em;
+			background-color: rgba(31, 36, 33, .8);
+			font-family: abel;
+			text-align: center;
+		}
 }
 
 
@@ -88,7 +101,21 @@
 		align-self: center;
 	}
 
-	.error {
-		
+	.errorContainer {
+		position: fixed;
+		top: 45%;
+		bottom: 45%;
+		left: 0;
+		right: 0;
+		z-index: 2;
 	}
+
+		.error {
+			color: red;
+			font-size: 1.5em;
+			background-color: rgba(31, 36, 33, .8);
+			font-family: abel;
+			text-align: center;
+
+		}
 }

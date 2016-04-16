@@ -228,6 +228,7 @@
 		bottom: 70%;
 		font-size: 2em;
 		color: red;
+		background-color: rgba(31, 36, 33, .8);
 		text-align: center;
 	}
 }

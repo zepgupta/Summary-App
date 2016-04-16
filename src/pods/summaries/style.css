@@ -4,11 +4,15 @@
 		font-family: abel;
 	}
 
-	.title {
-		text-align: center;
-		color: #49A078;
-		font-weight: bold;
-	}
+		.title {
+			text-align: center;
+			color: #49A078;
+			font-weight: bold;
+		}
+
+		.theSummaries {
+			min-height: 700px;
+		}
 }
 
 @media (min-width: 900px) {

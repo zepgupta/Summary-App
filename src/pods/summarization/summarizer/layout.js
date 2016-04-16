@@ -65,7 +65,7 @@ export default class SummarizerLayout extends React.Component {
     if (this.props.error !== '') {
       error = [];
       error.push(
-        <div>
+        <div className={styles.errorContainer}>
           <p className={styles.error}> {this.props.error} </p>
         </div>
       );
